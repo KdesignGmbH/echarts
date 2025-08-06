@@ -194,9 +194,8 @@ class HeatmapView extends ChartView {
                 }
             }
 
-            // add 0.5px to avoid the gaps
-            width = xAxis.getBandWidth() + .5;
-            height = yAxis.getBandWidth() + .5;
+            width = xAxis.getBandWidth();
+            height = yAxis.getBandWidth();
             xAxisExtent = xAxis.scale.getExtent();
             yAxisExtent = yAxis.scale.getExtent();
         }
@@ -252,10 +251,10 @@ class HeatmapView extends ChartView {
 
                 rect = new graphic.Rect({
                     shape: {
-                        x: point[0] - width / 2,
-                        y: point[1] - height / 2,
-                        width,
-                        height
+                        x: Math.floor(Math.round(point[0]) - width / 2),
+                        y: Math.floor(Math.round(point[1]) - height / 2),
+                        width: Math.ceil(width),
+                        height: Math.ceil(height)
                     },
                     style
                 });
